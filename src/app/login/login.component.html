@@ -1,0 +1,30 @@
+<section class="h-100 d-flex align-center col-flex text-yellow login-section">
+    <h1>Login To Start</h1>
+    <div class="form-container bg-darkestyellow">
+        <form #userloginform="ngForm" (ngSubmit)="onSubmit(userloginform)" novalidate>
+            <div class="control-group">
+                <label for="email">Email ID</label>
+                <input type="email" [(ngModel)]="loginFormModel.email" name="email" #useremail=ngModel required email>
+
+                <div class="invalid-input-container"
+                    *ngIf="!useremail?.valid && (useremail?.dirty || useremail?.touched)">
+                    <div *ngIf="useremail?.errors?.['required']">Email is required</div>
+                    <div *ngIf="useremail?.errors?.['email']">Valid Email is required</div>
+                </div>
+            </div>
+            <p class="text-center">OR</p>
+            <div class="control-group">
+                <label for="email">Mobile</label>
+                <input type="text" [(ngModel)]="loginFormModel.mobile" name="umobile" #usermobile=ngModel required
+                    pattern="^((\\+91-?)|0)?[0-9]{10}$">
+                <div class="invalid-input-container"
+                    *ngIf="!usermobile?.valid && (usermobile?.dirty || usermobile?.touched)">
+                    <div *ngIf="usermobile?.errors?.['required']">Mobile is required</div>
+                    <div *ngIf="usermobile?.errors?.['pattern']">Valid mobile number is required</div>
+                </div>
+            </div>
+            <button class="btn-submit w-100" type="submit"
+                [disabled]="(!usermobile?.valid ) && (!useremail?.valid)">Login</button>
+        </form>
+    </div>
+</section>

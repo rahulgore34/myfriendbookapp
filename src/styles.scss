@@ -1,1 +1,113 @@
 /* You can add global styles to this file, and also import other style files */
+
+$bgblack : #333;
+$textwhite: #fff;
+$txtblack: #111;
+$txtyellow: yellow;
+$darkestyellow: #686321;
+$darkred: darkred;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    background-color: $bgblack;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: $textwhite;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+// Commn classes
+.text-white {
+  color: $textwhite;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.h-100 {
+    min-height: 100vh;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.text-yellow {
+    color: $txtyellow;
+}
+
+.col-flex {
+    flex-direction: column;
+}
+
+.animate-appear {
+    animation-name: appeardisappear;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate ;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.btn-submit {
+    padding: 0.4em 2em;
+    background-color: green;
+    color: $textwhite;
+    cursor: pointer;
+    transition: all 0.4s;
+
+    &:hover {
+        background-color: lightgreen;
+        color: $bgblack;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        background-color: rgb(200, 178, 178);
+        color: $bgblack;
+    }
+}
+
+.bg-darkestyellow {
+    background-color: $darkestyellow;
+}
+
+.invalid-input-container {
+    color: $txtyellow;
+    background-color: $darkred;
+}
+@keyframes appeardisappear {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}

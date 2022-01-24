@@ -1,0 +1,19 @@
+
+.home-main {
+ flex-direction: column;
+ h1 {
+     font-size: 3em;
+ }
+
+ .btn-like-link {
+     border: 1px solid #fff;
+     padding: 0.6em 2em;
+     margin-top: 1em;
+     transition: all 0.4s;
+
+     &:hover {
+         background-color: #fff;
+         color: #111;
+     }
+ }
+}
