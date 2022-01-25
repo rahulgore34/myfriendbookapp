@@ -3,6 +3,15 @@
     <div class="form-container bg-darkestyellow">
         <form #userloginform="ngForm" (ngSubmit)="onSubmit(userloginform)" novalidate>
             <div class="control-group">
+                <label for="name">Name</label>
+                <input type="text" [(ngModel)]="loginFormModel.name" name="name" #username=ngModel required>
+
+                <div class="invalid-input-container"
+                    *ngIf="!username?.valid && (username?.dirty || username?.touched)">
+                    <div *ngIf="username?.errors?.['required']">Name is required</div>
+                </div>
+            </div>
+            <div class="control-group">
                 <label for="email">Email ID</label>
                 <input type="email" [(ngModel)]="loginFormModel.email" name="email" #useremail=ngModel required email>
 
@@ -12,6 +21,7 @@
                     <div *ngIf="useremail?.errors?.['email']">Valid Email is required</div>
                 </div>
             </div>
+            
             <p class="text-center">OR</p>
             <div class="control-group">
                 <label for="email">Mobile</label>
@@ -24,7 +34,7 @@
                 </div>
             </div>
             <button class="btn-submit w-100" type="submit"
-                [disabled]="(!usermobile?.valid ) && (!useremail?.valid)">Login</button>
+                [disabled]="(!username?.valid) || (!usermobile?.valid ) && (!useremail?.valid)">Login</button>
         </form>
     </div>
 </section>

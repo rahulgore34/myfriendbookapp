@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginFormModel = {
+      name:'',
       email: '',
       mobile: ''
     }
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
   onSubmit(form: NgForm) {
     console.log(form.value);
     if(form.value.umobile && !form.value.email) {
-      console.log('oTP validation')
+      console.log('OTP validation')
     } else if(!form.value.umobile && form.value.email) {
       console.log('email validationb')
     } else {
