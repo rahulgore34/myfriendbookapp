@@ -1,11 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 
+:root {
+    --darkblueheader: #191970;
+    --white: #ffffff;
+  }
+
 $bgblack : #333;
 $textwhite: #fff;
 $txtblack: #111;
 $txtyellow: yellow;
 $darkestyellow: #686321;
 $darkred: darkred;
+$bodybg: #002D62;
 
 * {
     box-sizing: border-box;
@@ -16,11 +22,12 @@ $darkred: darkred;
 body {
     width: 100%;
     min-height: 100vh;
-    background-color: $bgblack;
+  background-color: $bodybg;
+
 }
 
 ul {
-  list-style-type: none;
+    list-style-type: none;
 }
 
 a {
@@ -28,17 +35,26 @@ a {
     color: $textwhite;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin: 0;
 }
 
 // Commn classes
 .text-white {
-  color: $textwhite;
+    color: $textwhite;
 }
 
 .w-100 {
     width: 100%;
+}
+
+.w-50 {
+    width: 50%;
 }
 
 .h-100 {
@@ -69,23 +85,46 @@ h1, h2, h3, h4, h5, h6 {
     animation-name: appeardisappear;
     animation-duration: 2s;
     animation-iteration-count: infinite;
-    animation-direction: alternate ;
+    animation-direction: alternate;
 }
 
 .text-center {
     text-align: center;
 }
 
+.text-right {
+    text-align: right;
+}
+
 .btn-submit {
     padding: 0.4em 2em;
-    background-color: green;
+    background-color: #0066b2;
+    color: $textwhite;
+    cursor: pointer;
+    transition: all 0.4s;
+    border: 0;
+
+    &:hover {
+        background-color: #382ab9;
+        color: #ffff;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        background-color: #6475c2;
+        color: $bgblack;
+    }
+}
+
+.btn-primary {
+    padding: 0.4em 2em;
+    background-color: rgb(19, 63, 156);
     color: $textwhite;
     cursor: pointer;
     transition: all 0.4s;
 
     &:hover {
-        background-color: lightgreen;
-        color: $bgblack;
+        background-color: rgb(99, 83, 172);
     }
 
     &:disabled {
@@ -103,10 +142,12 @@ h1, h2, h3, h4, h5, h6 {
     color: $txtyellow;
     background-color: $darkred;
 }
+
 @keyframes appeardisappear {
     from {
         opacity: 1;
     }
+
     to {
         opacity: 0;
     }

@@ -1,0 +1,25 @@
+header {
+    color: var(--white);
+    display: flex;
+    background-color:  var(--darkblueheader);
+    border-bottom: 3px solid var(--white);
+    a.logo {
+        font-size: 2em;
+    }
+
+    ul.nav-links {
+       display: flex;
+       align-items: center;
+       flex: 1;
+       justify-content: flex-end;
+
+       a.nav-items-link {
+           padding: 0 15px;
+           transition: all 0.4s;
+
+           &:hover {
+               border-bottom: 1px solid var(--white);
+           }
+       }
+    }
+}

@@ -10,4 +10,8 @@ export class LoginService {
   isLoggedIn() {
     return !!localStorage.getItem('loggedinuser');
   }
+
+  setLogUser(username: string) {
+    localStorage.setItem('loggedinuser', username);
+  }
 }

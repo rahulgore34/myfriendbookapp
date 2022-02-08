@@ -1,13 +1,15 @@
-<section class="h-100 d-flex align-center col-flex text-yellow login-section">
-    <h1>Login To Start</h1>
-    <div class="form-container bg-darkestyellow">
+<section class="d-flex align-center col-flex text-yellow login-section">
+    <ng-container *ngIf="checkEmailExistInSys then emailInput; else loginformwrap"> Email input </ng-container>
+</section>
+
+<ng-template #loginform>
+    <div class="form-container">
         <form #userloginform="ngForm" (ngSubmit)="onSubmit(userloginform)" novalidate>
             <div class="control-group">
                 <label for="name">Name</label>
                 <input type="text" [(ngModel)]="loginFormModel.name" name="name" #username=ngModel required>
 
-                <div class="invalid-input-container"
-                    *ngIf="!username?.valid && (username?.dirty || username?.touched)">
+                <div class="invalid-input-container" *ngIf="!username?.valid && (username?.dirty || username?.touched)">
                     <div *ngIf="username?.errors?.['required']">Name is required</div>
                 </div>
             </div>
@@ -21,7 +23,7 @@
                     <div *ngIf="useremail?.errors?.['email']">Valid Email is required</div>
                 </div>
             </div>
-            
+
             <p class="text-center">OR</p>
             <div class="control-group">
                 <label for="email">Mobile</label>
@@ -37,4 +39,34 @@
                 [disabled]="(!username?.valid) || (!usermobile?.valid ) && (!useremail?.valid)">Login</button>
         </form>
     </div>
-</section>
+
+</ng-template>
+
+<ng-template #statusmsg>
+    <div class="form-container bg-darkestyellow otp-section d-flex col-flex align-center">
+        <h2 class="text-center">{{statusMessage}}</h2>
+        <form #otpverfyform="ngForm" (ngSubmit)="onVerifySubmit(otpverfyform)" novalidate>
+            <div>
+                <input type="text" class="otp-field w-50" placeholder="Please enter your otp" name="otp"
+                    [(ngModel)]="otpField" required maxlength="4" pattern="\d{4}">
+            </div>
+            <button class="btn-primary w-100" type="submit" [disabled]="!otpverfyform.valid">Validate</button>
+            <p class="text-right" style="cursor: pointer;" (click)="statusMessage = ''">Go to Login Page</p>
+        </form>
+    </div>
+</ng-template>
+
+
+<ng-template #emailInput>
+    <div class="text-center">
+        <h1>Your email id please..</h1>
+        <div>
+            <input type="text" class="email-input w-100">
+        </div>
+        <button class="btn btn-submit w-100">Go</button>
+    </div>
+</ng-template>
+
+<ng-template #loginformwrap>
+    <ng-container *ngIf="!statusMessage then loginform;else statusmsg"></ng-container>
+</ng-template>
