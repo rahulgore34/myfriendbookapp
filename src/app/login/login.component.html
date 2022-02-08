@@ -61,12 +61,13 @@
     <div class="text-center">
         <h1>Your email id please..</h1>
         <div>
-            <input type="text" class="email-input w-100">
+            <input type="text" class="email-input w-100" #emailInput>
         </div>
-        <button class="btn btn-submit w-100">Go</button>
+        <button class="btn btn-submit w-100" (click)="onEmailInputClick(emailInput.value)">Go</button>
     </div>
 </ng-template>
 
 <ng-template #loginformwrap>
+    <h5 *ngIf="invalidEmailSatusMessage">{{invalidEmailSatusMessage}} Please login </h5>
     <ng-container *ngIf="!statusMessage then loginform;else statusmsg"></ng-container>
 </ng-template>
