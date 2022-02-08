@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpService } from '../http.service';
 import { ILoginModel } from './loginmodel';
-import {LoginService } from './login.service';
+import { LoginService } from './login.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   otpField = '';
   loginuseremail = '';
   checkEmailExistInSys = true;
+  invalidEmailSatusMessage='';
   constructor(private httpService: HttpService, private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
       mobile: ''
     }
   }
-  
+
   onSubmit(form: NgForm) {
     let loginmethod = '';
     let loginmethodvalue = '';
@@ -46,7 +47,7 @@ export class LoginComponent implements OnInit {
 
     const reqObj = {
       loginmethod,
-      loginmethodvalue : this.loginuseremail,
+      loginmethodvalue: this.loginuseremail,
       loginusername
     }
 
@@ -63,7 +64,7 @@ export class LoginComponent implements OnInit {
     if (otp) {
       this.httpService.postData({ otp, loginUsername: this.loginuseremail }, 'verifyotp').subscribe((res: any) => {
         console.log(res);
-        if(res && res['message'] === 'success') {
+        if (res && res['message'] === 'success') {
           this.loginService.setLogUser(this.loginuseremail);
           this.router.navigate(['/myfriends']);
         }
@@ -75,5 +76,25 @@ export class LoginComponent implements OnInit {
     if (form.value && form.value.otp) {
       this.verifyOtp(form.value.otp);
     }
+  }
+  onEmailInputClick(emailVal: string) {
+    console.log('hi' + emailVal);
+    const requestObj = {
+      email: emailVal
+    };
+
+    this.httpService.postData(requestObj,'checkemailexists').subscribe((res:any)=>{
+      console.log(res);
+      if(res && res['flag']) {
+        this.loginService.setLogUser(emailVal);
+        this.router.navigate(['/myfriends']);
+      }else{
+      this.checkEmailExistInSys= false;
+      this.invalidEmailSatusMessage=res.message;
+
+      }
+      
+    })
+
   }
 }
