@@ -2,13 +2,16 @@
     <a href="#" class="logo">MyFriendBook</a>
     <ul class="nav-links">
         <li class="nav-items">
-            <a href="" class="nav-items-link">FriendBook</a>
+            <a routerLink="myfriends" routerLinkActive="activeLink" class="nav-items-link">FriendBook</a>
         </li>
-        <li class="nav-items">
-            <a href="" class="nav-items-link">Login</a>
+        <li class="nav-items" *ngIf="!loggedUser">
+            <a routerLink="login" routerLinkActive="activeLink" class="nav-items-link">Login</a>
         </li>
-        <li class="nav-items">
-            <a href="" class="nav-items-link">Logout</a>
+        <li class="nav-items" *ngIf="loggedUser">
+            <a href="" class="nav-items-link">{{loggedUser}}</a>
+        </li>
+        <li class="nav-items" *ngIf="loggedUser">
+            <a class="nav-items-link" (click)="logout()">Logout</a>
         </li>
     </ul>
 </header>
